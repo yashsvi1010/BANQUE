@@ -3,12 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>BankersMan</title>
   </head>
   <body>
     <nav>
-      <p class="welcome">Log in to get started</p>
-      <img src="bankerMan-logo.jpg" alt="logo" />
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+              <a class="navbar-brand welcome fs-1 fw-bold" href="#">BankersMan</a>
+              <img src="bankerMan-logo.jpg" alt="logo" class="logo" />
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >
+                <span class="navbar-toggler-icon" ></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                 
+                 
+                </ul>
+                <form class="d-flex login">
+                  <input class="form-control me-2 fs-4" type="text" placeholder="User" aria-label="Search" style="height: 3rem; border-radius: 10rem">
+                  <input class="form-control me-2 fs-4" type="password"  maxlength="4" placeholder="PIN" aria-label="Search" style="height: 3rem; border-radius: 10rem;" >
+                  <button class="btn btn-outline-success fs-4" type="submit" style="height: 3rem;border-radius: 10rem">Login</button>
+                </form>
+              </div>
+            </div>
+          </nav>
+      <!-- <p class="welcome">Log in to get started</p>
+      <img src="bankerMan-logo.jpg" alt="logo" class="logo" />
       <form class="login">
         <input
           type="text"
@@ -22,16 +44,16 @@
           class="login__input login__input--pin"
         />
         <button class="login__btn">&rarr;</button>
-      </form>
+      </form> -->
     </nav>
     <main class="app">
       <!-- balance -->
       <div class="balance">
         <div>
           <p class="balance__label">Current balance</p>
-          <p class="blanace__date">As of<span class="date">05/03/2025</span></p>
+          <p class="blanace__date">As of <span class="date">05/03/2025</span></p>
         </div>
-        <p class="balance__value">0000$</p>
+        <p class="balance__value">000000$</p>
       </div>
       <!-- Movements -->
       <div class="movements">
@@ -45,19 +67,21 @@
             1 withdrawal
           </div>
           <div class="movements__date">24/01/2037</div>
-          <div class="movements__value">-378€</div>
+          <div class="movements__value">-378$</div>
         </div>
       </div>
 
       <!-- Summary -->
       <div class="summary">
+            <button class="btn--sort">&downarrow; SORT </button>
+            <div class="summary-in-out"> 
         <p class="summary__label">In</p>
         <p class="summary__value summary__value--in">0000€</p>
         <p class="summary__label">Out</p>
         <p class="summary__value summary__value--out">0000€</p>
         <p class="summary__label">Interest</p>
-        <p class="summary__value summary__value--interest">0000€</p>
-        <button class="btn--sort">&downarrow; SORT</button>
+        <p class="summary__value summary__value--interest">0000€</p></div>
+       
       </div>
 
       <!-- OPERATION: TRANSFERS -->
@@ -102,5 +126,7 @@
           </p>
         </main>
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
   </body>
 </html>
