@@ -10,8 +10,8 @@
   <body>
     <nav>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-              <a class="navbar-brand welcome fs-1 fw-bold" href="#">BankersMan</a>
+            <div class="container-fluid nav-container">
+              <a class="navbar-brand welcome fs-2 fw-bold" href="#">BankersMan</a>
               <img src="bankerMan-logo.jpg" alt="logo" class="logo" />
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >
                 <span class="navbar-toggler-icon" ></span>
@@ -19,12 +19,13 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                  
+
                  
                 </ul>
                 <form class="d-flex login">
-                  <input class="form-control me-2 fs-4" type="text" placeholder="User" aria-label="Search" style="height: 3rem; border-radius: 10rem">
-                  <input class="form-control me-2 fs-4" type="password"  maxlength="4" placeholder="PIN" aria-label="Search" style="height: 3rem; border-radius: 10rem;" >
-                  <button class="btn btn-outline-success fs-4" type="submit" style="height: 3rem;border-radius: 10rem">Login</button>
+                  <input class="login__input--user form-control me-2 fs-4" type="text" placeholder="User" aria-label="Search" style="height: 3rem; border-radius: 10rem">
+                  <input class="login__input--pin form-control me-2 fs-4" type="password"  maxlength="4" placeholder="PIN" aria-label="Search" style="height: 3rem; border-radius: 10rem;" >
+                  <button class="btn login__btn btn-outline-success fs-4" type="submit" style="height: 3rem;border-radius: 10rem">Login</button>
                 </form>
               </div>
             </div>
@@ -76,11 +77,11 @@
             <button class="btn--sort">&downarrow; SORT </button>
             <div class="summary-in-out"> 
         <p class="summary__label">In</p>
-        <p class="summary__value summary__value--in">0000€</p>
+        <p class="summary__value summary__value--in">0000$</p>
         <p class="summary__label">Out</p>
-        <p class="summary__value summary__value--out">0000€</p>
+        <p class="summary__value summary__value--out">0000$</p>
         <p class="summary__label">Interest</p>
-        <p class="summary__value summary__value--interest">0000€</p></div>
+        <p class="summary__value summary__value--interest">0000$</p></div>
        
       </div>
 

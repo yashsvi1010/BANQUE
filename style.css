@@ -19,8 +19,9 @@ body {
 nav {
   font-family: "Poppins", sans-serif;
 }
+
 .logo {
-  height: 5.25rem;
+  height: 5rem;
 }
 /* .welcome {
   font-size: 1.9rem;
@@ -79,7 +80,7 @@ nav {
   gap: 2rem;
 
   /* NOTE This creates the fade in/out anumation */
-  /* opacity: 0; */
+  opacity: 0;
   transition: all 1s;
 }
 .balance {
@@ -259,6 +260,10 @@ h2 {
 }
 
 @media (max-width: 900px) {
+  .nav-container {
+    gap: 10px;
+    font-size: 2rem;
+  }
   nav {
     flex-direction: column;
     gap: 1rem;
