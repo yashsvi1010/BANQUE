@@ -13,15 +13,26 @@ body {
   color: #444;
   background-color: #f3f3f3;
   height: 100vh;
-  padding: 0 2rem;
+  padding: 0;
 }
+/* front page */
 
+/* Logged in Page */
 nav {
   font-family: "Poppins", sans-serif;
 }
-
-.logo {
+.navbar {
+  position: sticky;
+  padding-top: 0;
+}
+.nav-container {
+  padding: 0 3rem;
+  gap: 25px;
+  background-color: #c3bdbdd2;
   height: 5rem;
+}
+.logo {
+  height: 3rem;
 }
 /* .welcome {
   font-size: 1.9rem;
@@ -78,7 +89,7 @@ nav {
   grid-template-columns: 4fr 3fr;
   grid-template-rows: auto repeat(3, 13rem) auto;
   gap: 2rem;
-
+  padding: 0 2rem;
   /* NOTE This creates the fade in/out anumation */
   opacity: 0;
   transition: all 1s;
