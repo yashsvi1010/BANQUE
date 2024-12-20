@@ -1,7 +1,6 @@
 "use strict";
-//Overview window
 
-const modal = document.querySelector(".modal");
+const modal = document.querySelector(".login--modal");
 const overlay = document.querySelector(".overlay");
 const btnCloseModal = document.querySelector(".btn--close-modal");
 const btnsOpenModal = document.querySelectorAll(".btn--show-modal");
@@ -11,6 +10,7 @@ const nav = document.querySelector(".nav");
 const tabs = document.querySelectorAll(".operations__tab");
 const tabsContainer = document.querySelector(".operations__tab-container");
 const tabsContent = document.querySelectorAll(".operations__content");
+
 ///////////////////////////////////////
 // Modal window
 
@@ -28,7 +28,6 @@ const closeModal = function () {
 btnsOpenModal.forEach((btn) => btn.addEventListener("click", openModal));
 
 btnCloseModal.addEventListener("click", closeModal);
-
 overlay.addEventListener("click", closeModal);
 
 document.addEventListener("keydown", function (e) {
@@ -39,7 +38,6 @@ document.addEventListener("keydown", function (e) {
 
 ///////////////////////////////////////
 // Button scrolling
-
 btnScrollTo.addEventListener("click", function (e) {
   const s1coords = section1.getBoundingClientRect();
   console.log(s1coords);
@@ -56,29 +54,36 @@ btnScrollTo.addEventListener("click", function (e) {
   section1.scrollIntoView({ behavior: "smooth" });
 });
 
-////////////////////////
-//Page navigation
+///////////////////////////////////////
+// Page navigation
 
-document.querySelector(".nav__links").addEventListener("click", (e) => {
-  if (e.target.classList.contains("nav__links")) {
-    const id = this.getAttribute("href");
+document.querySelector(".nav__links").addEventListener("click", function (e) {
+  e.preventDefault();
 
+  // Matching strategy
+  if (e.target.classList.contains("nav__link")) {
+    const id = e.target.getAttribute("href");
     document.querySelector(id).scrollIntoView({ behavior: "smooth" });
   }
 });
-//////////////////////
+
+///////////////////////////////////////
 // Tabbed component
 
 tabsContainer.addEventListener("click", function (e) {
   const clicked = e.target.closest(".operations__tab");
 
+  // Guard clause
   if (!clicked) return;
 
+  // Remove active classes
   tabs.forEach((t) => t.classList.remove("operations__tab--active"));
   tabsContent.forEach((c) => c.classList.remove("operations__content--active"));
 
+  // Activate tab
   clicked.classList.add("operations__tab--active");
 
+  // Activate content area
   document
     .querySelector(`.operations__content--${clicked.dataset.tab}`)
     .classList.add("operations__content--active");
@@ -91,6 +96,7 @@ const handleHover = function (e) {
     const link = e.target;
     const siblings = link.closest(".nav").querySelectorAll(".nav__link");
     const logo = link.closest(".nav").querySelector("img");
+
     siblings.forEach((el) => {
       if (el !== link) el.style.opacity = this;
     });
@@ -98,21 +104,24 @@ const handleHover = function (e) {
   }
 };
 
+// Passing "argument" into handler
 nav.addEventListener("mouseover", handleHover.bind(0.5));
 nav.addEventListener("mouseout", handleHover.bind(1));
 
-////////////////////////////////////
-// Sticky navigation
+///////////////////////////////////////
+// Sticky navigation: Intersection Observer API
 
 const header = document.querySelector(".header");
 const navHeight = nav.getBoundingClientRect().height;
 
 const stickyNav = function (entries) {
   const [entry] = entries;
+  // console.log(entry);
 
   if (!entry.isIntersecting) nav.classList.add("sticky");
   else nav.classList.remove("sticky");
 };
+
 const headerObserver = new IntersectionObserver(stickyNav, {
   root: null,
   threshold: 0,
@@ -151,6 +160,8 @@ const loadImg = function (entries, observer) {
   const [entry] = entries;
 
   if (!entry.isIntersecting) return;
+
+  // Replace src with data-src
   entry.target.src = entry.target.dataset.src;
 
   entry.target.addEventListener("load", function () {
@@ -159,6 +170,7 @@ const loadImg = function (entries, observer) {
 
   observer.unobserve(entry.target);
 };
+
 const imgObserver = new IntersectionObserver(loadImg, {
   root: null,
   threshold: 0,
@@ -167,7 +179,7 @@ const imgObserver = new IntersectionObserver(loadImg, {
 
 imgTargets.forEach((img) => imgObserver.observe(img));
 
-//////////////////////////////////////
+///////////////////////////////////////
 // Slider
 const slider = function () {
   const slides = document.querySelectorAll(".slide");
@@ -225,6 +237,7 @@ const slider = function () {
     goToSlide(curSlide);
     activateDot(curSlide);
   };
+
   const init = function () {
     goToSlide(0);
     createDots();
@@ -232,6 +245,7 @@ const slider = function () {
     activateDot(0);
   };
   init();
+
   // Event handlers
   btnRight.addEventListener("click", nextSlide);
   btnLeft.addEventListener("click", prevSlide);
@@ -250,6 +264,9 @@ const slider = function () {
   });
 };
 slider();
+
+///////////////////////////////////////
+//ACCOUNT SCRIPT
 
 ////////////////////////////////
 // Data
@@ -339,9 +356,10 @@ const labelSumIn = document.querySelector(".summary__value--in");
 const labelSumOut = document.querySelector(".summary__value--out");
 const labelSumInterest = document.querySelector(".summary__value--interest");
 const labelTimer = document.querySelector(".timer");
-const containerApp = document.querySelector(".app");
+const containerApp = document.querySelector(".accounts__page");
+const overviewContainer = document.querySelector(".overview__page");
 const containerMovements = document.querySelector(".movements");
-
+const modalWindow = document.querySelector("#exampleModal");
 const btnLogin = document.querySelector(".login__btn");
 const btnTransfer = document.querySelector(".form__btn--transfer");
 const btnLoan = document.querySelector(".form__btn--loan");
@@ -386,21 +404,21 @@ const displayMovements = (acc, sort = false) => {
   console.log(movs);
   movs.forEach((mov, i) => {
     const type = mov > 0 ? "deposit" : "withdrawal";
-
+    const typeSign = mov > 0 ? "	&darr;" : "&uarr;";
     const date = new Date(acc.movementsDates[i]);
     const displayDate = formatMovementDate(date, acc.locale);
 
     const formattedMov = formatCur(mov, acc.locale, acc.currency);
 
     const html = `
-    <div class="movements__row">
-          <div class="movements__type movements__type--${type}">${
+        <div class="movements__row">
+              <div class="movements__type movements__type--${type}">${
       i + 1
-    } ${type}</div>
-        <div class="movements__date">${displayDate}</div>
-        <div class="movements__value">${formattedMov}</div>
-      </div>   
-    `;
+    } ${typeSign}</div>
+            <div class="movements__date">${displayDate}</div>
+            <div class="movements__value">${formattedMov}</div>
+          </div>   
+        `;
     containerMovements.insertAdjacentHTML("afterbegin", html);
   });
 };
@@ -453,7 +471,7 @@ const updateUI = function (acc) {
   // Display summary
   calcDisplaySummary(acc);
 };
-
+console.log(overviewContainer);
 const startLogOutTimer = function () {
   const tick = function () {
     const min = String(Math.trunc(time / 60)).padStart(2, 0);
@@ -461,8 +479,9 @@ const startLogOutTimer = function () {
     labelTimer.textContent = `${min}:${sec}`;
     if (time === 0) {
       clearInterval(timer);
-      labelWelcome.textContent = "Log in to get started";
-      containerApp.style.opacity = 0;
+      labelWelcome.textContent = "BankersMan";
+      containerApp.style.display = "none";
+      overviewContainer.style.display = "block";
     }
     time--;
   };
@@ -491,7 +510,22 @@ btnLogin.addEventListener("click", (e) => {
     labelWelcome.textContent = `Welcome back, ${
       currentAccount.owner.split(" ")[0]
     }`;
-    containerApp.style.opacity = 100;
+    //     containerApp.style.display = "block";
+    overviewContainer.style.display = "none";
+    // containerApp.style.display = "flex";
+    //     window.location.href = "accounts.html";
+    const mediaQuery = window.matchMedia("(max-width: 900px)");
+    mediaQuery.addEventListener("change", handleMediaChange);
+    function handleMediaChange(e) {
+      if (e.matches) {
+        // When the media query matches (width <= 600px)
+        containerApp.style.display = "flex"; // Change display type to 'block'
+      } else {
+        // When the media query does not match
+        containerApp.style.display = "grid"; // Hide the element
+      }
+    }
+    handleMediaChange(mediaQuery);
 
     // Create current date and time
     const now = new Date();
@@ -596,7 +630,8 @@ btnClose.addEventListener("click", function (e) {
     accounts.splice(index, 1);
 
     // Hide UI
-    containerApp.style.opacity = 0;
+    containerApp.style.display = "none";
+    overviewContainer.style.display = "block";
   }
 
   inputCloseUsername.value = inputClosePin.value = "";
