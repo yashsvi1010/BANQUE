@@ -36,22 +36,35 @@
                 <a
                   class="nav-link active nav__link"
                   aria-current="page"
+                  data-bs-toggle="collapse"
+                  data-bs-target=".navbar-collapse.show"
                   href="#section--1"
                   >Features</a
                 >
               </li>
               <li class="nav-item nav__item">
-                <a class="nav-link nav__link" href="#section--2">Operations</a>
+                <a
+                  class="nav-link nav__link"
+                  href="#section--2"
+                  data-bs-toggle="collapse"
+                  data-bs-target=".navbar-collapse.show"
+                  >Operations</a
+                >
               </li>
               <li class="nav-item nav__item">
-                <a class="nav-link nav__link" href="#section--3"
+                <a
+                  class="nav-link nav__link"
+                  href="#section--3"
+                  data-bs-toggle="collapse"
+                  data-bs-target=".navbar-collapse.show"
                   >Testimonials</a
                 >
               </li>
               <li class="nav-item nav__item">
                 <a
                   class="nav__link nav__link--btn btn--show-modal"
-                  href="#demo"
+                  id="login--btn"
+                  href="#modal--form"
                   data-bs-toggle="collapse"
                   data-bs-target=".navbar-collapse.show"
                   >Login</a
@@ -367,7 +380,7 @@
         </div>
       </div> -->
 
-      <div class="login--modal hidden">
+      <div class="login--modal hidden" id="modal--form">
         <button class="btn--close-modal">&times;</button>
         <h3 class="modal__header">Login Account</h3>
         <form class="modal__form">
@@ -498,12 +511,9 @@
 
       <p class="footer__copyright">
         &copy; Copyright by
-        <a
-          class="footer__link twitter-link"
-          target="_blank"
-          href="https://twitter.com/jonasschmedtman"
-          >Jonas Schmedtmann</a
-        >. Use for learning or your portfolio. Don't use to teach
+        <a class="footer__link twitter-link" target="_blank" href="#"
+          >Yashsvi Singh</a
+        >
       </p>
     </footer>
 

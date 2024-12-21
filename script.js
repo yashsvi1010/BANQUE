@@ -57,10 +57,9 @@ btnScrollTo.addEventListener("click", function (e) {
 ///////////////////////////////////////
 // Page navigation
 
-document.querySelector(".nav__links").addEventListener("click", function (e) {
+document.querySelector(".nav__links").addEventListener("click", (e) => {
   e.preventDefault();
 
-  // Matching strategy
   if (e.target.classList.contains("nav__link")) {
     const id = e.target.getAttribute("href");
     document.querySelector(id).scrollIntoView({ behavior: "smooth" });
@@ -471,7 +470,7 @@ const updateUI = function (acc) {
   // Display summary
   calcDisplaySummary(acc);
 };
-console.log(overviewContainer);
+// console.log(overviewContainer);
 const startLogOutTimer = function () {
   const tick = function () {
     const min = String(Math.trunc(time / 60)).padStart(2, 0);
@@ -510,19 +509,16 @@ btnLogin.addEventListener("click", (e) => {
     labelWelcome.textContent = `Welcome back, ${
       currentAccount.owner.split(" ")[0]
     }`;
-    //     containerApp.style.display = "block";
+
     overviewContainer.style.display = "none";
-    // containerApp.style.display = "flex";
-    //     window.location.href = "accounts.html";
+
     const mediaQuery = window.matchMedia("(max-width: 900px)");
     mediaQuery.addEventListener("change", handleMediaChange);
     function handleMediaChange(e) {
       if (e.matches) {
-        // When the media query matches (width <= 600px)
-        containerApp.style.display = "flex"; // Change display type to 'block'
+        containerApp.style.display = "flex";
       } else {
-        // When the media query does not match
-        containerApp.style.display = "grid"; // Hide the element
+        containerApp.style.display = "grid";
       }
     }
     handleMediaChange(mediaQuery);
@@ -536,8 +532,6 @@ btnLogin.addEventListener("click", (e) => {
       month: "numeric",
       year: "numeric",
     };
-
-    // console.log(locale);
 
     labelDate.textContent = new Intl.DateTimeFormat(
       currentAccount.locale,
@@ -554,6 +548,23 @@ btnLogin.addEventListener("click", (e) => {
 
     // Update UI
     updateUI(currentAccount);
+
+    // changing login btn to logout
+    document.getElementById("login--btn").innerHTML = "Logout";
+    document.getElementById("login--btn").classList.toggle("logout__btn");
+    const btnLogout = document.querySelector(".logout__btn");
+    //adding logout function
+    if (btnLogout.classList.contains("logout__btn")) {
+      console.log(btnLogout);
+      btnLogout.addEventListener("click", (e) => {
+        console.log("clicked");
+        labelWelcome.textContent = "BankersMan";
+        containerApp.style.display = "none";
+        overviewContainer.style.display = "block";
+        document.getElementById("login--btn").innerHTML = "Login";
+        closeModal();
+      });
+    }
   }
 });
 
