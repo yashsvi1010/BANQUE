@@ -50,6 +50,7 @@ html {
   background-color: var(--color-primary);
   color: #222;
   width: 8rem;
+  justify-content: center;
 }
 
 .nav__link--btn:hover,
