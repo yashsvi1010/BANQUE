@@ -23,6 +23,12 @@ html {
 }
 /* Navbar  */
 .navbar {
+  background: rgb(238, 174, 202);
+  background: linear-gradient(
+    90deg,
+    rgba(238, 174, 202, 1) 0%,
+    rgba(148, 187, 233, 1) 100%
+  );
   width: 100%;
   z-index: 100;
 }
@@ -60,6 +66,7 @@ html {
 
 .logo {
   height: 3rem;
+  mix-blend-mode: multiply;
 }
 @media (min-width: 900px) {
   .navbar {
